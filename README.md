@@ -1,6 +1,8 @@
 # DataSpot
 
-**DataSpot** is a project that allows users to view, search and manage geographic locations on an interactive map integrated with **Google Maps API** or **OpenStreetMap** (we'll decide later on).  
+**DataSpot** is a project that allows users to view, search and manage geographic locations
+on an interactive map integrated with **Google Maps API** or **OpenStreetMap** (we'll decide later on).  
+
 All location data is stored in an **Oracle Database**, with full CRUD operations accessible via a user-friendly interface.
 
 ## Features

@@ -12,7 +12,7 @@ Design, implement, and document an interactive application for browsing and mana
 - [x] Add initial `README.md` and `TODO.md` to version control
 - [ ] Experiment with technologies given.
 
-**Target:** October 27, 2025  
+**Target:** October 28, 2025  
 
 ### Phase 2 — Data Modeling
 - [ ] Draft initial Entity–Relationship (ER) model on paper or draw.io  

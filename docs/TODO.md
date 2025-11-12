@@ -1,16 +1,16 @@
 # TODO 
-## 1. CORE OBJECTIVE
-Design, implement, and document an interactive application for browsing and managing location data using OracleDB as the backend and an external mapping API for visualization.
+## 1. CORE OBJECTIVE (done)
+Design, implement and document an interactive application for browsing and managing location data using OracleDB as the backend and an external mapping API for visualization.
 
 ## 2. TASK CHECKLIST
 
-### Phase 1 — Planning and Setup
+### Phase 1 — Planning and Setup (done)
 - [x] Define overall project concept and goals  
 - [x] Confirm project fits course requirements (10 entities, function, procedure, CRUD)  
 - [x] Write short application description for approval  
-- [ ] Create repository structure (`/sql`, `/apex`, `/docs` etc. or something similar)  
+- [x] Create repository structure (`/sql`, `/apex`, `/docs` etc. or something similar)  
 - [x] Add initial `README.md` and `TODO.md` to version control
-- [ ] Experiment with technologies given.
+- [x] Experiment with technologies given.
 
 **Target:** October 28, 2025  
 

@@ -41,3 +41,5 @@ The database model includes **10 entities** to represent real-world geographic a
 | `Review`           | User reviews associated with the place, including rating, author, and text.                                                              |
 | `TypeLabel`        | Categories and tags assigned by Google (e.g., restaurant, park, museum).                                                                 |
 | `Attribute`        | Boolean service and accessibility features (e.g., delivery, takeout, serves_wine, wheelchair_accessible).                                |
+
+See `docs/phase2-data-model.md` for the extended entity catalog, relationship map, and Data Modeler checklist that drive Phase 2 of the project.

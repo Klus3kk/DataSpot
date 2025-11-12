@@ -1,2 +1,2 @@
 # Docs
-Here are things related to ER drafts, notes, exported diagrams etc.
+Place for analysis artifacts, diagrams, and decision logs.

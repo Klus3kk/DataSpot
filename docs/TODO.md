@@ -15,22 +15,22 @@ Design, implement and document an interactive application for browsing and manag
 **Target:** October 28, 2025  
 
 ### Phase 2 — Data Modeling
-- [ ] Draft initial Entity–Relationship (ER) model on paper or draw.io  
-- [ ] Create full ER diagram in **Oracle SQL Developer Data Modeler**
-- [ ] Define entity names, attributes, and primary/foreign keys  
-- [ ] Verify minimum 10 entities and variety of relationships (1:1, 1:N, N:M)  
-- [ ] Export diagram for documentation  
-- [ ] Review and refine logical model with normalization up to 3NF  
+- [x] Draft initial Entity–Relationship (ER) model on paper or draw.io  
+- [x] Create full ER diagram in **Oracle SQL Developer Data Modeler**
+- [x] Define entity names, attributes, and primary/foreign keys  
+- [x] Verify minimum 10 entities and variety of relationships (1:1, 1:N, N:M)  
+- [x] Export diagram for documentation  
+- [x] Review and refine logical model with normalization up to 3NF  
 
 **Target:** November 5, 2025  
 
 ### Phase 3 — Relational Schema and SQL DDL
 - [ ] Transform ER diagram into manual SQL DDL scripts (no auto-generation)  
-- [ ] Implement tables, constraints, foreign keys, and cascading rules  
-- [ ] Create necessary **sequences** for ID generation  
-- [ ] Write one **stored function** (`f_calculate_distance`)  
-- [ ] Write one **stored procedure** (`p_add_location`)  
-- [ ] Add optional **indexes** for text search and performance  
+- [x] Implement tables, constraints, foreign keys, and cascading rules  
+- [x] Create necessary **sequences** for ID generation  
+- [x] Write one **stored function** (`f_calculate_distance`)  
+- [x] Write one **stored procedure** (`p_add_location`)  
+- [x] Add optional **indexes** for text search and performance  
 - [ ] Test all scripts in Oracle SQL Developer  
 
 **Target:** November 8, 2025  

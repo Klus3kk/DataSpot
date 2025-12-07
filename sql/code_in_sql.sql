@@ -32,7 +32,7 @@ create table Review (
   author_url VARCHAR2(400),
   rating NUMBER(2,1),
   relative_time_desc VARCHAR2(100),
-  text VARCHAR2(2000),
+  review_text VARCHAR2(2000),
   submitted_at TIMESTAMP,
   language VARCHAR2(20),
   constraint fk_review_place
@@ -138,7 +138,57 @@ CREATE SEQUENCE seq_geolocation  START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE;
 
 -- FUNKCJA SKŁADOWANA
 
--- Średni rating iejsca na podstawie zapisywanych recenzji
+-- Wyznaczanie odległości pomiędzy dwo punktami na mapie poprzez wzór Haversine'a
+CREATE OR REPLACE FUNCTION distance_between_places(
+    p_place_id1 IN NUMBER,
+    p_place_id2 IN NUMBER
+)
+RETURN NUMBER
+AS
+    lat1   GeoLocation.latitude%TYPE;
+    lon1   GeoLocation.longitude%TYPE;
+    lat2   GeoLocation.latitude%TYPE;
+    lon2   GeoLocation.longitude%TYPE;
+
+    -- promień Ziemi
+    R CONSTANT NUMBER := 6371;
+
+    a   NUMBER;
+    c   NUMBER;
+    d   NUMBER;
+BEGIN
+    -- pierwsze miejsce
+    SELECT latitude, longitude
+    INTO lat1, lon1
+    FROM GeoLocation
+    WHERE place_id = p_place_id1;
+
+    -- drugie miejsce
+    SELECT latitude, longitude
+    INTO lat2, lon2
+    FROM GeoLocation
+    WHERE place_id = p_place_id2;
+
+    -- konwersja stopni na radiany
+    lat1 := lat1 * (ACOS(-1) / 180);
+    lon1 := lon1 * (ACOS(-1) / 180);
+    lat2 := lat2 * (ACOS(-1) / 180);
+    lon2 := lon2 * (ACOS(-1) / 180);
+
+    -- wzór haversine
+    a :=  POWER(SIN((lat2 - lat1) / 2), 2)
+          + COS(lat1) * COS(lat2)
+          * POWER(SIN((lon2 - lon1) / 2), 2);
+
+    c := 2 * ATAN2(SQRT(a), SQRT(1 - a));
+
+    d := R * c; -- ostateczny dystans [km]
+
+    RETURN d;
+END;
+/
+
+-- Średni rating miejsca na podstawie zapisywanych recenzji
 CREATE OR REPLACE FUNCTION get_place_average_rating(p_place_id IN NUMBER)
 RETURN NUMBER
 AS
@@ -154,7 +204,7 @@ END;
 /
 
 -- PROCEDURA SKŁADOWANA
-
+  
 -- Dodaj recenzję
 CREATE OR REPLACE PROCEDURE add_review(
     p_place_id IN NUMBER,
@@ -186,4 +236,22 @@ BEGIN
 END;
 /
 
- 
+-- Aktualizacja podstawowych danych miejsca
+CREATE OR REPLACE PROCEDURE update_place_basic(
+    p_place_id           IN NUMBER,
+    p_name               IN VARCHAR2,
+    p_formatted_address  IN VARCHAR2,
+    p_website            IN VARCHAR2,
+    p_phone              IN VARCHAR2
+)
+AS
+BEGIN
+    UPDATE Place
+    SET 
+        name = p_name,
+        formatted_address = p_formatted_address,
+        website = p_website,
+        phone = p_phone
+    WHERE place_id = p_place_id;
+END;
+/

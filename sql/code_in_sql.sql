@@ -255,3 +255,48 @@ BEGIN
     WHERE place_id = p_place_id;
 END;
 /
+
+-- Dodawanie nowego miejsca
+CREATE OR REPLACE PROCEDURE add_full_place(
+    p_name              IN VARCHAR2,
+    p_formatted_address IN VARCHAR2,
+    p_business_status   IN VARCHAR2,
+    p_price_level       IN NUMBER,
+    p_lat               IN NUMBER,
+    p_lng               IN NUMBER,
+    p_ne_lat            IN NUMBER,
+    p_ne_lng            IN NUMBER,
+    p_sw_lat            IN NUMBER,
+    p_sw_lng            IN NUMBER,
+    p_website           IN VARCHAR2,
+    p_phone             IN VARCHAR2,
+    p_new_place_id      OUT NUMBER
+)
+AS
+BEGIN
+    p_new_place_id := seq_place.NEXTVAL;
+
+    INSERT INTO Place(
+        place_id, name, formatted_address, business_status,
+        price_level, website, phone
+    ) VALUES (
+        p_new_place_id, p_name, p_formatted_address,
+        p_business_status, p_price_level, p_website, p_phone
+    );
+
+    INSERT INTO GeoLocation(
+        geolocation_id, place_id, latitude, longitude
+    ) VALUES (
+        seq_geolocation.NEXTVAL, p_new_place_id, p_lat, p_lng
+    );
+
+    INSERT INTO Viewport(
+        viewport_id, place_id,
+        ne_lat, ne_lng, sw_lat, sw_lng
+    ) VALUES (
+        seq_viewport.NEXTVAL, p_new_place_id,
+        p_ne_lat, p_ne_lng, p_sw_lat, p_sw_lng
+    );
+END;
+/
+
